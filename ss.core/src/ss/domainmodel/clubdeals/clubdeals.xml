@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<databundle>
+	<clubdeals>
+		<clubdeal id="1" name="Club Deal 1">
+			<contact name="eee eee" type=""/>
+      		<contact name="r" type="lawyer"/>
+      		<contact name="aaa aaa" type="no type"/>
+      		<contact name="bbb bbb"/>
+		</clubdeal>
+		<clubdeal id="2" name="Club Deal 2">
+			<files>
+				<file id="1231541473654897" name="vCard.vcf" />
+				<file id="9999802736748293" name="test.doc" />
+			</files>
+			<contact name="aaa aaa" type="lawyer"/>
+      		<contact name="r" type="coach"/>
+      		<contact name="eee eee" type="coach"/>
+      		<contact name="bbb bbb"/>
+		</clubdeal>
+	</clubdeals>
+	<types>
+		<typerecord name="developer"/>
+    	<typerecord name="coach"/>
+    	<typerecord name="worker"/>
+    	<typerecord name="lawyer"/>
+    	<typerecord name="admin"/>
+    	<typerecord name="user"/>
+	</types>
+</databundle>

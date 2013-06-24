@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ss.update.build" default="build.update" basedir=".">
+
+	<target name="define.os.by.runtime">
+		<condition property="os" value="osx">
+			<os family="mac" />
+		</condition>
+		<condition property="os" value="linux">
+			<os family="unix" />
+		</condition>
+		<condition property="os" value="win32">
+			<os family="windows" />
+		</condition>
+	</target>
+
+	
+	<target name="build.update" depends="define.os.by.runtime">
+		<property name="client.build.files.dir" location="../../bin/client/${os}/dist/files"/>
+		<property name="client.update.dir" location="../../bin/client/client-installation/${os}"/>
+		<delete dir="${client.update.dir}"/>
+		<java jar="ss.instdesc.generator.jar" fork="true" spawn="false" output="./logs/console.log">
+			<arg line="${client.build.files.dir}"/>
+			<arg line="${client.update.dir}"/>
+		</java>
+		<echo>Created client update folder for ${os} - ${client.update.dir} </echo>
+	</target>
+	
+</project>
+

@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ss.build.bin" default="create.jar">
+
+	<property name="build.classes.dir" value="${project.output.dir}/classes"/>
+		
+	<target name="define.absolute.project.path">
+		<!-- generate full workbase source path -->
+		<path id="absolute.project.path">
+			<pathelement location="${project.dir}"/>
+		</path>
+		<pathconvert property="absolute.project.path"
+			refid="absolute.project.path"/>
+		<echo>Defined absolute project dir: ${absolute.project.path}</echo>
+	</target>
+	<target name="define.class.path" depends="define.absolute.project.path">
+		<!-- create relative path to libs -->
+		<path id="class.path">
+			<fileset dir="${project.dir}/${lib}">
+				<include name="**/*.jar"/>
+			</fileset>
+			<fileset dir="${project.dir}/${lib.os}">
+				<include name="**/*.jar"/>
+			</fileset>
+		</path>
+		<!-- make path relative and replace to uri slashes -->
+		<pathconvert targetos="unix" property="class.path" refid="class.path"
+			pathsep=" ">
+			<map from="${absolute.project.path}${file.separator}" to=""/>
+		</pathconvert>
+		<echo>Defined class path: ${class.path} </echo>
+	</target>
+	
+	<target name="clean.and.create.classes.dir">
+		<delete dir="${build.classes.dir}" failonerror="false"/>
+		<mkdir dir="${build.classes.dir}"/>
+	</target>
+	
+	<!-- compile the code. -->
+	<target name="compile"
+		depends="define.class.path, clean.and.create.classes.dir">
+		<property name="code.dir" value="${project.dir}/src"/>
+		<!-- Compile the java code from ${src} into ${build} -->
+		<javac destdir="${build.classes.dir}" debug="true" memoryMaximumSize="256M" fork="true">
+			<src path="${code.dir}"/>
+			<classpath refid="class.path"/>
+		</javac>
+		<!-- copy configuration files -->
+		<copy todir="${build.classes.dir}">
+			<fileset dir="${code.dir}">
+				<include name="**/*.sql"/>
+				<include name="**/*.xml"/>
+				<include name="**/*.properties"/>
+			</fileset>
+		</copy>
+	</target>
+	
+	<target name="clean.and.create.jar.dir">
+		<delete dir="${build.jar.dir}"/>
+		<mkdir dir="${build.jar.dir}"/>
+	</target>
+	
+	<!-- Create jar file from compiled sources -->
+	<target name="create.jar"
+		depends="compile, clean.and.create.jar.dir">
+		<!-- TODO: project related vars -->
+		<property name="application.jar.file.name" value="supra.jar"/>
+		<property name="application.vendor" value="suprasphere.com"/>
+		<property name="application.name" value="SupraSphere"/>
+		<property name="main.class" value="ss.client.EntryPoint"/>
+		<!-- create jar file -->
+		<jar jarfile="${build.jar.dir}/${application.jar.file.name}">
+			<fileset dir="${build.classes.dir}">
+				<include name="**/*.*"/>
+			</fileset>
+			<manifest>
+				<attribute name="Built-By" value="${application.vendor}"/>
+				<attribute name="Class-Path" value="${class.path}"/>
+				<attribute name="Main-Class" value="${main.class}"/>
+				<section name="common">
+					<attribute name="Specification-Title"
+						value="${application.name}"/>
+					<attribute name="Specification-Version"
+						value="${application.version}"/>
+					<attribute name="Specification-Vendor"
+						value="${application.vendor}"/>
+					<attribute name="Implementation-Title" value="common"/>
+					<attribute name="Implementation-Version"
+						value="${qualified.application.version}"/>
+					<attribute name="Implementation-Vendor"
+						value="${application.vendor}"/>
+				</section>
+			</manifest>
+		</jar>
+	</target>
+	
+</project> 

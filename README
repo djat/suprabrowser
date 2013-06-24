@@ -1,0 +1,34 @@
+build instructions:
+
+enter into the ss.build directory and type:
+
+ant deploy.server -Drev=3000
+ant deploy.client -Drev=3000
+
+ant run.server.creator
+
+when the dialog pops up, enter in your first and last name in the "Contact Name" field
+
+if you have a password on mysql, enter it in the bottom
+
+that will create the stub database with one user
+
+then, run:
+
+ant run.client
+
+followed by
+
+ant run.server
+
+it should fork the client process, but if it doesn't, open up another terminal and run the server and client in separate shells
+
+when the application connects to the server, you can create another user by creating a "contact" in the drop down list in the main "SupraDevelopment" tab.
+as long as you give the contact a username and a password, that user will be able to login. then, you should be able to run another "ant run.client" and connect in with the new user.
+
+
+CTRL-T should open up a new tab. any time you copy and paste a URL into a sphere's text input window, it will be converted to a bookmark and indexed. To search the index, do:
+
+Command->SupraSearch
+
+please give us feedback and we would love to entertain proposals for enhancements

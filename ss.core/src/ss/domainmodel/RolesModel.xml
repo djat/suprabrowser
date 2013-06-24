@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<voting_model>
+  <sphere_id value="7994984521843734328"/>
+  <type value="workflow"/>
+  <roles>
+    <role value="Portfolio Manager" abbr="pm">
+      <member contact_name="Roman Pion" username="roman"/>
+    </role>
+    <role value="Trader" abbr="trdr">
+      <member contact_name="Dima Goncharov" username="dima"/>
+    </role>
+  </roles>
+</voting_model>

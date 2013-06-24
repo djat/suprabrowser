@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dyn_client> 
+  <address value="127.0.0.1"/>  
+  <port value="3000"/>  
+  <supra_sphere value="SupraDevelopment"/> 
+</dyn_client>

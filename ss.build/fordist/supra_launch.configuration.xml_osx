@@ -1,0 +1,6 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE properties SYSTEM "http://java.sun.com/dtd/properties.dtd">
+<properties>
+	<comment>Properties that used by supra_launch to start supra client</comment>	
+	<entry key="jvmargs">-Xms30m -Xmx256m -XstartOnFirstThread</entry>
+</properties>

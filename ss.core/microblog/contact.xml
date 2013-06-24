@@ -1,0 +1,41 @@
+<contact>
+  <confirmed value="true"/>
+  <voting_model type="absolute" desc="Absolute without qualification">
+    <tally number="0.0" value="0.0"/>
+  </voting_model>
+  <last_name value="Thomson"/>
+  <first_name value="David"/>
+  <login value="david"/>
+  <email_address value="david@suprasphere.com"/>
+  <voice1 value="617123"/>
+  <voice2 value="123123"/>
+  <mobile value="mobile"/>
+  <fax value="123123"/>
+  <organization value="SupraSphere, Inc."/>
+  <URL value="URL"/>
+  <home_sphere value="home sphere"/>
+  <street value="street"/>
+  <street_cont value="street cont."/>
+  <city value="tucson"/>
+  <state value="az"/>
+  <zip_code value="123123"/>
+  <department value="department"/>
+  <title value="product manager"/>
+  <country value="us"/>
+  <type value="contact"/>
+  <thread_type value="contact"/>
+  <subject value="David Thomson"/>
+  <giver value="David Thomson"/>
+  <last_updated_by value="David Thomson"/>
+  <body>I met him somewhere</body>
+  <message_id value="743995021172629841"/>
+  <thread_id value="743995021172629841"/>
+  <original_id value="743995021172629841"/>
+  <locations>
+    <sphere URL="sphere::127.0.0.1:3000,TI Holdings" ex_system="TI Holdings" ex_display="TI Holdings" ex_message="743995021172629841"/>
+    <sphere URL="sphere::127.0.0.1:3000,TI Holdings" ex_system="5440964337066946921" ex_display="David Thomson" ex_message="743995021172629841"/>
+    <sphere URL="sphere::127.0.0.1:3000,TI Holdings" ex_system="8743353084842574400" ex_display="test 1" ex_message="743995021172629841"/>
+    <sphere ex_system="5381168054124074630" ex_display="Peter Wilhelm" ex_message="743995021172629841"/>
+  </locations>
+  <current_sphere value="5440964337066946921"/>
+</contact>

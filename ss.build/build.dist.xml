@@ -1,0 +1,254 @@
+<?xml version="1.0"?>
+<project name="ss.build.installation" default="default.task">
+
+	<property name="fordist.dir" value="${basedir}/fordist" />
+
+	<target name="cleanup.and.create.dist.dirs">
+		<delete dir="${dist.dir}" failonerror="false" />
+		<mkdir dir="${dist.dir}" />
+		<mkdir dir="${dist.files.dir}" />
+		<mkdir dir="${dist.pack.dir}" />
+	</target>
+
+	<target name="copy.jar">
+		<copy todir="${dist.files.dir}">
+			<fileset dir="${build.jar.dir}">
+				<include name="*.jar" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="copy.libs">
+		<copy todir="${dist.files.dir}/${lib}">
+			<fileset dir="${project.dir}/${lib}" />
+		</copy>
+		<copy todir="${dist.files.dir}/${lib.os}">
+			<fileset dir="${project.dir}/${lib.os}" />
+		</copy>
+	</target>
+
+	<target name="copy.common" depends="cleanup.and.create.dist.dirs, copy.jar, copy.libs" />
+
+	<target name="copy.xulrunner.win32">
+		<unjar src="${fordist.dir}/xulrunner-1.9.2.en-US.win32.zip" dest="${dist.files.dir}">
+			<patternset>
+				<include name="xulrunner/**" />
+			</patternset>
+		</unjar>
+	</target>
+
+	<target name="copy.xulrunner.linux">
+		<untar src="${fordist.dir}/xulrunner-1.9.2.en-US.linux-i686.tar.bz2" dest="${dist.files.dir}" compression="gzip">
+			<patternset>
+				<include name="xulrunner/**" />
+			</patternset>
+		</untar>
+	</target>
+
+	<target name="copy.xulrunner.osx">
+		<echo>
+			TODO: copy OS X xulrunner dist to xulrunner
+		</echo>
+	</target>
+
+	<target name="copy.files.client" depends="copy.common">
+		<copy todir="${dist.files.dir}">
+			<fileset dir="${fordist.dir}" includes="
+				 logger.conf
+				 logger.conf.client
+				 LICENSE.txt
+				 last_login.xml
+				 INSTALL.txt
+				 dyn_client.xml
+				 supra_launch.jar
+				 supraversions.xml
+				 supra.ico
+				 run.cmd
+				 run.xml				 
+				 " />
+		</copy>
+		<copy tofile="${dist.files.dir}/supra_launch.configuration.xml">
+			<fileset file="${fordist.dir}/supra_launch.configuration.xml_${os}"/>
+		</copy>
+		<copy todir="${dist.files.dir}/launch-lib">
+			<fileset dir="${fordist.dir}/launch-lib" />
+		</copy>
+		<antcall target="copy.xulrunner.${os}" />
+	</target>
+
+	<target name="copy.files.server" depends="copy.common">
+		<copy todir="${dist.files.dir}">
+			<fileset dir="${fordist.dir}" includes="
+				 logger.conf
+				 logger.conf.smtp
+				 logger.conf.server			
+				 LICENSE.txt
+				 INSTALL.txt
+				 supraversions.xml
+				 run.xml
+				 " />
+		</copy>
+	</target>
+
+	<target name="pack.client.win32">
+		<property name="file.name.base" value="suprasphere-setup_${qualified.application.version}" />
+		<property name="dist.pack.file" location="${dist.pack.dir}/${file.name.base}.exe" />
+		<property name="innosetup.script" value="SupraSphere-Installation.iss" />
+		<pathconvert dirsep="\" property="installer.files">
+			<path location="${dist.files.dir}" />
+		</pathconvert>
+		<pathconvert dirsep="\" property="installer.output">
+			<path location="${dist.pack.dir}" />
+		</pathconvert>
+		<copy overwrite="true" todir="${dist.dir}" file="${fordist.dir}/${innosetup.script}">
+			<filterset>
+				<filter token="qualified-application-version" value="${qualified.application.version}" />
+				<filter token="output" value="${installer.output}" />
+				<filter token="files" value="${installer.files}" />
+				<filter token="base-file-name" value="${file.name.base}" />
+			</filterset>
+		</copy>
+		<exec executable="${arg.innosetup}">
+			<arg value="/cc" />
+			<arg value="${dist.dir}/${innosetup.script}" />
+		</exec>
+		<echo>Win32 build is: ${dist.pack.file}</echo>
+	</target>
+
+	<target name="pack.client.linux">
+		<property name="dist.pack.file" location="${dist.pack.dir}/suprasphere_${qualified.application.version}.tar.gz" />
+		<tar compression="gzip" destfile="${dist.pack.file}">
+			<!-- add all executable files -->
+			<tarfileset prefix="supra_${qualified.application.version}" dir="${dist.files.dir}">
+				<exclude name="xulrunner/chrome/icons/default/default.xpm" />
+				<exclude name="xulrunner/components/libpipboot.so" />
+				<exclude name="xulrunner/components/libpipnss.so" />
+				<exclude name="xulrunner/components/libpippki.so" />
+				<exclude name="xulrunner/components/libmozgnome.so" />
+				<exclude name="xulrunner/components/libimgicon.so" />
+				<exclude name="xulrunner/components/libfileview.so" />
+				<exclude name="xulrunner/components/libxmlextras.so" />
+				<exclude name="xulrunner/components/libautoconfig.so" />
+				<exclude name="xulrunner/components/libsystem-pref.so" />
+				<exclude name="xulrunner/components/libtransformiix.so" />
+				<exclude name="xulrunner/components/libuniversalchardet.so" />
+				<exclude name="xulrunner/components/libwebsrvcs.so" />
+				<exclude name="xulrunner/components/libnkgnomevfs.so" />
+				<exclude name="xulrunner/components/libauth.so" />
+				<exclude name="xulrunner/components/libxulutil.so" />
+				<exclude name="xulrunner/icons/mozicon50.xpm" />
+				<exclude name="xulrunner/icons/mozicon16.xpm" />
+				<exclude name="xulrunner/icons/document.png" />
+				<exclude name="xulrunner/libfreebl3.so" />
+				<exclude name="xulrunner/libgtkembedmoz.so" />
+				<exclude name="xulrunner/libjavaxpcomglue.so" />
+				<exclude name="xulrunner/libmozjs.so" />
+				<exclude name="xulrunner/libnspr4.so" />
+				<exclude name="xulrunner/libnss3.so" />
+				<exclude name="xulrunner/libnssckbi.so" />
+				<exclude name="xulrunner/libplc4.so" />
+				<exclude name="xulrunner/libplds4.so" />
+				<exclude name="xulrunner/libsmime3.so" />
+				<exclude name="xulrunner/libsoftokn3.so" />
+				<exclude name="xulrunner/libssl3.so" />
+				<exclude name="xulrunner/libxpcom.so" />
+				<exclude name="xulrunner/libxul.so" />
+				<exclude name="xulrunner/LICENSE" />
+				<exclude name="xulrunner/mozilla-installer-bin" />
+				<exclude name="xulrunner/mozilla-xremote-client" />
+				<exclude name="xulrunner/plugins/libunixprintplugin.so" />
+				<exclude name="xulrunner/plugins/libnullplugin.so" />
+				<exclude name="xulrunner/plugins/libflashplayer.so" />
+				<exclude name="xulrunner/README.txt" />
+				<exclude name="xulrunner/run-mozilla.sh" />
+				<exclude name="xulrunner/updater" />
+				<exclude name="xulrunner/xpicleanup" />
+				<exclude name="xulrunner/xulrunner" />
+				<exclude name="xulrunner/xulrunner-bin" />
+				<exclude name="xulrunner/xulrunner-stub" />
+			</tarfileset>
+			<!-- add files with executable permissions-->
+			<tarfileset mode="755" prefix="supra_${qualified.application.version}" dir="${dist.files.dir}">
+				<include name="xulrunner/chrome/icons/default/default.xpm" />
+				<include name="xulrunner/components/libpipboot.so" />
+				<include name="xulrunner/components/libpipnss.so" />
+				<include name="xulrunner/components/libpippki.so" />
+				<include name="xulrunner/components/libmozgnome.so" />
+				<include name="xulrunner/components/libimgicon.so" />
+				<include name="xulrunner/components/libfileview.so" />
+				<include name="xulrunner/components/libxmlextras.so" />
+				<include name="xulrunner/components/libautoconfig.so" />
+				<include name="xulrunner/components/libsystem-pref.so" />
+				<include name="xulrunner/components/libtransformiix.so" />
+				<include name="xulrunner/components/libuniversalchardet.so" />
+				<include name="xulrunner/components/libwebsrvcs.so" />
+				<include name="xulrunner/components/libnkgnomevfs.so" />
+				<include name="xulrunner/components/libauth.so" />
+				<include name="xulrunner/components/libxulutil.so" />
+				<include name="xulrunner/icons/mozicon50.xpm" />
+				<include name="xulrunner/icons/mozicon16.xpm" />
+				<include name="xulrunner/icons/document.png" />
+				<include name="xulrunner/libfreebl3.so" />
+				<include name="xulrunner/libgtkembedmoz.so" />
+				<include name="xulrunner/libjavaxpcomglue.so" />
+				<include name="xulrunner/libmozjs.so" />
+				<include name="xulrunner/libnspr4.so" />
+				<include name="xulrunner/libnss3.so" />
+				<include name="xulrunner/libnssckbi.so" />
+				<include name="xulrunner/libplc4.so" />
+				<include name="xulrunner/libplds4.so" />
+				<include name="xulrunner/libsmime3.so" />
+				<include name="xulrunner/libsoftokn3.so" />
+				<include name="xulrunner/libssl3.so" />
+				<include name="xulrunner/libxpcom.so" />
+				<include name="xulrunner/libxul.so" />
+				<include name="xulrunner/LICENSE" />
+				<include name="xulrunner/mozilla-installer-bin" />
+				<include name="xulrunner/mozilla-xremote-client" />
+				<include name="xulrunner/plugins/libunixprintplugin.so" />
+				<include name="xulrunner/plugins/libnullplugin.so" />
+				<include name="xulrunner/plugins/libflashplayer.so" />
+				<include name="xulrunner/README.txt" />
+				<include name="xulrunner/run-mozilla.sh" />
+				<include name="xulrunner/updater" />
+				<include name="xulrunner/xpicleanup" />
+				<include name="xulrunner/xulrunner" />
+				<include name="xulrunner/xulrunner-bin" />
+				<include name="xulrunner/xulrunner-stub" />
+			</tarfileset>
+		</tar>
+		<echo>Linux build is: ${dist.pack.file}</echo>
+	</target>
+
+	<target name="pack.client.osx">
+		<property name="file.name.base" value="suprasphere_${qualified.application.version}" />
+		<property name="dist.pack.file" location="${dist.pack.dir}/${file.name.base}.zip" />
+		<zip destfile="${dist.pack.file}">
+			<zipfileset prefix="${file.name.base}" dir="${dist.files.dir}" />
+		</zip>
+		<echo>OS X build is: ${dist.pack.file}</echo>
+	</target>
+
+	<target name="pack.server">
+		<property name="file.name.base" value="suprasphere-server_${qualified.application.version}" />
+		<property name="dist.pack.file" location="${dist.pack.dir}/${file.name.base}.zip" />
+		<zip destfile="${dist.pack.file}">
+			<zipfileset prefix="${file.name.base}" dir="${dist.files.dir}" />
+		</zip>
+		<echo>Server build is: ${dist.pack.file}</echo>
+	</target>
+
+	<target name="create.dist.client" depends="copy.files.client">
+		<antcall target="pack.client.${os}" />
+	</target>
+
+	<target name="create.dist.server" depends="copy.files.server">
+		<antcall target="pack.server" />
+	</target>
+
+	<target name="default.task">
+		<echo>This file contains internal tasks and should be called via build.xml</echo>
+	</target>
+
+
+</project>

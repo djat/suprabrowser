@@ -1,0 +1,41 @@
+<inviteTextVariables>
+	<downloadSSURL value="http://www.suprasphere.com/SSClient.exe"/>
+	
+	<body>Hi $recipientName,
+
+
+I have been using a very helpful software product called SupraSphere. It's a new kind of operating system that runs your own "Personal Cloud" of secure email, instant messaging, bookmarks, contacts, and files. I would like you to connect into my PC so that you can see what it's like and get your own. Here are the steps to connect to my Cloud.
+
+
+1. ---IMPORTANT FIRST STEP-- Please visit http://java.com and click 'Download Now'. If you get an error when trying to run the product after install, you don't have java installed correctly.
+
+
+
+2. Next, please download and install $downloadSSURL
+
+
+
+3. Finally, please copy (control c) and paste (control v) the entire URL below when you first run the application
+
+
+
+$inviteURL
+
+
+
+If you have any question please visit SupraSphere's web site at: http://www.SupraSphere.com
+
+
+I hope you become as excited about SupraSphere as I am!
+
+
+
+Sincerely,
+
+
+$inviterName
+
+	
+
+</body>
+</inviteTextVariables>

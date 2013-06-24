@@ -1,0 +1,101 @@
+#mContainer {
+    position:relative;
+    width:200px;
+    height:auto;
+    margin:auto;
+    border:2px solid #000;
+    overflow:hidden;
+}
+
+#nContainer {
+    position:relative;
+    overflow:hidden;
+    width:200px;
+    border-style:none;
+    background:#D8D8D8;
+}
+
+#listContainer {
+    width: 100%;
+    display:block;
+    position:absolute;
+    top:0px;
+    left:0px;
+    padding:0px;
+    margin:0px;
+}
+
+.subject {
+    position:relative;
+    display:block;
+    border-style:none;
+    width:200px;
+    height:20px;
+    padding:2px;
+    font-family:sans-serif;
+    font-size: 9px;
+    cursor:pointer;
+    margin:0px;
+    color:#638DA1;
+    background-color:#D8D8D8;
+    line-height:10px;
+    overflow:hidden;
+    white-space: wrap;
+    border-top:1px solid #638DA1;
+}
+
+#listContainer div:hover {
+    background-color: #8D8D8D;
+    color:#000;
+}
+
+#upArrow {
+    width:200px;
+    height:10px;
+    font-family: sans-serif;
+    text-align:center;
+    color:#FFF;
+    cursor:pointer;
+}
+
+#downArrow {
+    width:200px;
+    height:10px;
+    font-family: sans-serif;
+    text-align:center;
+    color:#FFF;
+    cursor:pointer;
+}
+
+
+#upArrow {
+    background:#638DA1 url(up.gif) no-repeat center center;
+}
+
+#downArrow {
+    background:#638DA1 url(down.gif) no-repeat center center;
+}
+
+#changeSize {
+    width:10px;
+    height:10px;
+    position:relative;
+    float:right;
+    background:#638DA1 url(plus.gif) no-repeat center center;
+}
+
+.expansion {
+   font-family: sans-serif;
+   font-size: 9px;
+   display: none;
+   width: 100%;
+   height: auto;
+}
+
+.comment_display {
+    width: 320px;
+    height: 200px;
+    overflow: auto;
+    position: absolute;
+    border: solid 1px;
+}

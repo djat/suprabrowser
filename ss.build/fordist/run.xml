@@ -1,0 +1,62 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project name="ss.core.runs" default="client" basedir=".">
+
+	<property name="supra.jar.file" location="${basedir}/supra.jar"/>
+	
+	<path id="supra.jar">
+		<pathelement location="${supra.jar.file}" />
+	</path>
+
+	<target name="define.os.by.runtime">
+ 	<condition property="os" value="osx">
+                <and>
+            <os family="unix" />
+            <os name="Mac OS X"/>
+                </and>
+                </condition>
+		<condition property="os" value="linux">
+			<os family="unix" />
+		</condition>
+		<condition property="os" value="win32">
+			<os family="windows" />
+		</condition>
+	</target>
+
+	<target name="client" description="Runs supra.jar" depends="define.os.by.runtime">
+		<java jar="supra_launch.jar" fork="true" spawn="false"/>
+	</target>
+
+	<target name="server" description="Runs supraserver">
+		<java classname="ss.server.networking.SupraServer" fork="true" spawn="false">
+			<classpath refid="supra.jar"/>
+		</java>
+	</target>
+
+	<target name="server.creator" depends="define.os.by.runtime" description="Runs server creator">
+		<antcall target="server.creator.${os}" />
+	</target>
+
+	<property name="sc.main" value="ss.server.admin.gui.SupraServerCreatorGUI" />
+	<target name="server.creator.osx">
+		<java classname="${sc.main}" fork="true" spawn="false">
+			<jvmarg value="-XstartOnFirstThread" />
+			<classpath refid="supra.jar" />
+		</java>
+	</target>
+
+	<target name="server.creator.linux">
+		<antcall target="run.sc.nojvmargs" />
+	</target>
+
+	<target name="server.creator.win32">
+		<antcall target="run.sc.nojvmargs" />
+	</target>
+
+	<target name="run.sc.nojvmargs">
+		<java classname="${sc.main}" fork="true" spawn="false">
+			<classpath refid="supra.jar" />
+		</java>
+	</target>
+
+</project>
+

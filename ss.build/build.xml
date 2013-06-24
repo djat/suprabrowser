@@ -1,0 +1,297 @@
+<?xml version="1.0"?>
+<project name="ss.build" default="help" basedir=".">
+
+	<property file="local.build.properties" />
+	<!-- fail>
+			Please specify arg.deploy.* properties (see local.build.properties.example)
+			<condition>
+			<or>
+				<not>
+					<isset property="arg.deploy.server" />
+				</not>
+				<not>
+					<isset property="arg.deploy.client" />
+				</not>
+				<not>
+					<isset property="arg.deploy.web" />
+				</not>
+			</or>
+		</condition>
+	</fail -->
+
+	<property name="output.base.dir" value="${basedir}/bin" />
+	<property name="side.client" value="client" />
+	<property name="side.server" value="server" />
+	<property name="client.all.dir" value="${output.base.dir}/clients" />
+
+	<target name="cleanup.output.dir">
+		<delete dir="${output.dir}" failonerror="false" />
+	</target>
+
+	<target name="define.application.revision">
+		<fail>
+			Please define rev attribute via command line -Drev=%revision%
+			<condition>
+				<not>
+					<isset property="rev" />
+				</not>
+			</condition>
+		</fail>
+		<property name="application.revision" value="${rev}" />
+	</target>
+
+	<target name="define.common.properties" depends="define.application.revision, define.os.by.runtime">
+		<!--define pathes-->
+		<pathconvert property="project.dir">
+			<path location="${basedir}/../${project.name}" />
+		</pathconvert>
+		<pathconvert property="project.output.dir">
+			<path location="${project.dir}/bin" />
+		</pathconvert>
+		<pathconvert property="output.dir">
+			<path location="${output.base.dir}/${side}/${os}" />
+		</pathconvert>
+		<property name="build.jar.dir" location="${project.output.dir}/jar" />
+		<property name="dist.dir" location="${output.dir}/dist" />
+		<property name="dist.files.dir" location="${dist.dir}/files" />
+		<property name="dist.pack.dir" location="${dist.dir}/pack" />
+		<!-- load project version information -->
+		<property file="${project.dir}/version.properties" />
+		<!-- define application version -->
+		<property name="application.version" value="${proj.manual.application.version}.${application.revision}" />
+		<property name="qualified.application.version" value="${os}-${application.version}" />
+		<!-- define os dependent libraries -->
+		<property name="lib" value="lib" />
+		<property name="lib.os" value="lib-${os}" />
+		<echo>
+			Build project: ${project.dir}
+			Project output: ${project.output.dir} 
+			Version: ${qualified.application.version}			
+		</echo>
+	</target>
+
+	<target name="build.core.project" depends="define.common.properties">
+		<ant antfile="${basedir}/build.core.xml" dir="${basedir}" />
+	</target>
+
+	<target name="build.dist" depends="build.core.project">
+		<ant antfile="${basedir}/build.dist.xml" dir="${basedir}" target="create.dist.${side}" />
+		<ant antfile="update.build.xml" dir="${basedir}/tools/instdesc">
+			<property name="os" value="${os}" />
+		</ant>
+	</target>
+
+	<target name="build.and.deploy.files" depends="build.core.project">
+		<ant antfile="${basedir}/build.dist.xml" dir="${basedir}" target="copy.files.${side}" />
+		<condition property="destdir" value="${arg.deploy.client}">
+			<equals arg1="${side}" arg2="${side.client}" />
+		</condition>
+		<condition property="destdir" value="${arg.deploy.server}">
+			<equals arg1="${side}" arg2="${side.server}" />
+		</condition>
+		<pathconvert property="absolute.destdir">
+			<path location="${destdir}" />
+		</pathconvert>
+		<mkdir dir="${absolute.destdir}" />
+		<copy todir="${absolute.destdir}">
+			<fileset dir="${dist.files.dir}" />
+		</copy>
+		<echo>${side} deployed to ${absolute.destdir}</echo>
+	</target>
+
+	<target name="dist.server.linux">
+		<antcall target="build.dist">
+			<param name="project.name" value="ss.core" />
+			<param name="os" value="linux" />
+			<param name="side" value="${side.server}" />
+		</antcall>
+	</target>
+
+	<target name="dist.client.linux">
+		<antcall target="build.dist">
+			<param name="project.name" value="ss.core" />
+			<param name="os" value="linux" />
+			<param name="side" value="${side.client}" />
+		</antcall>
+	</target>
+
+	<target name="dist.client.win32">
+		<antcall target="build.dist">
+			<param name="project.name" value="ss.core" />
+			<param name="os" value="win32" />
+			<param name="side" value="${side.client}" />
+		</antcall>
+	</target>
+
+	<target name="dist.client.osx">
+		<antcall target="build.dist">
+			<param name="project.name" value="ss.core" />
+			<param name="os" value="osx" />
+			<param name="side" value="${side.client}" />
+		</antcall>
+	</target>
+
+	<target name="copy.dist.pack" depends="define.common.properties">
+		<copy todir="${dest}">
+			<fileset dir="${dist.pack.dir}">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+	</target>
+
+	<target name="dist.client.all" depends="dist.client.linux, dist.client.win32, dist.client.osx">
+		<delete dir="${client.all.dir}" failonerror="false" />
+		<mkdir dir="${client.all.dir}" />
+		<property name="dest" value="${client.all.dir}" />
+		<property name="side" value="${side.client}" />
+		<property name="project.name" value="ss.core" />
+		<antcall target="copy.dist.pack">
+			<param name="os" value="win32" />
+		</antcall>
+		<antcall target="copy.dist.pack">
+			<param name="os" value="linux" />
+		</antcall>
+		<antcall target="copy.dist.pack">
+			<param name="os" value="osx" />
+		</antcall>
+		<echo>
+			All clients distributions packages copied to ${client.all.dir}
+		</echo>
+	</target>
+
+	<target name="dist.all" depends="dist.client.all, dist.server.linux">
+		<property name="dist.all.dir" value="${output.base.dir}/all" />
+		<delete dir="${dist.all.dir}" failonerror="false" />
+		<mkdir dir="${dist.all.dir}" />
+		<copy todir="${dist.all.dir}">
+			<fileset dir="${client.all.dir}">
+				<include name="*.*" />
+			</fileset>
+		</copy>
+		<antcall target="copy.dist.pack">
+			<param name="dest" value="${dist.all.dir}" />
+			<param name="side" value="${side.server}" />
+			<param name="project.name" value="ss.core" />
+			<param name="os" value="linux" />
+		</antcall>
+		<echo>
+			All distributions packages copyed to ${dist.all.dir}
+		</echo>
+	</target>
+
+	<target name="define.os.by.runtime">
+	 <condition property="os" value="osx">
+                <and>
+            <os family="unix" />
+            <os name="Mac OS X"/>
+                </and>
+                </condition>
+		<condition property="os" value="linux">
+			<os family="unix" />
+		</condition>
+		<condition property="os" value="win32">
+			<os family="windows" />
+		</condition>
+		<fail>
+			Can't resolve current os
+			<condition>
+				<not>
+					<isset property="os" />
+				</not>
+			</condition>
+		</fail>
+		<echo>Current os is ${os}</echo>
+	</target>
+
+	<target name="deploy.side" depends="define.os.by.runtime">
+		<!-- required defined ${side} property -->
+		<antcall target="build.and.deploy.files">
+			<param name="project.name" value="ss.core" />
+		</antcall>
+	</target>
+
+	<target name="deploy.client">
+		<antcall target="deploy.side">
+			<param name="side" value="${side.client}" />
+		</antcall>
+	</target>
+
+	<target name="deploy.server">
+		<antcall target="deploy.side">
+			<param name="side" value="${side.server}" />
+		</antcall>
+	</target>
+
+	<target name="build.as.library" depends="define.common.properties">
+		<property name="project.build.dir" location="${target.dir}/${project.name}"/>
+		<delete dir="${project.build.dir}" failonerror="false" />
+		<mkdir dir="${project.build.dir}" />
+		<antcall target="build.and.deploy.files">
+			<param name="absolute.destdir" value="${project.build.dir}" />
+		</antcall>
+		<property name="target.lib.dir" location="${target.dir}/lib" />
+		<delete dir="${target.lib.dir}" failonerror="false" />
+		<mkdir dir="${target.lib.dir}" />
+		<move todir="${target.lib.dir}">
+			<fileset dir="${project.build.dir}">
+				<include name="${lib}/**/*.jar" />
+				<include name="${lib.os}/**/*.jar" />
+				<include name="supra.jar" />
+			</fileset>
+			<mapper type="flatten" />
+		</move>
+	</target>
+
+	<target name="deploy.web">
+		<!-- TODO: fix temp implementation of library project build -->
+		<property name="ss.web.dir" location="${basedir}/../ss.web" />
+		<property name="ss.web.bin.dir" location="${ss.web.dir}/bin" />
+		<!-- build ss.core and copy libs to ${ss.web.bin.sscore.dir}-->
+		<antcall target="build.as.library">
+			<param name="project.name" value="ss.core" />
+			<param name="side" value="client" />
+			<param name="target.dir" value="${ss.web.bin.dir}" />			
+		</antcall>
+		<ant antfile="${ss.web.dir}/build.xml" dir="${ss.web.dir}" target="deploy">
+			<property name="deploy.dir" value="${arg.deploy.web}" />
+		</ant>
+	</target>
+
+	<target name="run.client">
+		<ant antfile="run.xml" dir="${arg.deploy.client}" target="client" />
+	</target>
+
+	<target name="run.server">
+		<ant antfile="run.xml" dir="${arg.deploy.server}" target="server" />
+	</target>
+
+	<target name="run.server.creator">
+		<ant antfile="run.xml" dir="${arg.deploy.server}" target="server.creator" />
+	</target>
+
+	<target name="help">
+		<echo>
+Syntax:
+ ant &lt;target.name&gt; -revD=&lt;svn.revision&gt;
+Example:
+ ant dist.client.all -Drev=123
+			
+Avaliable targets:
+ dist.server.linux 		build server package for Linux (zip)
+ dist.client.linux		build client installation for Linux (tar.gz)
+ dist.client.win32		build client installation for Win32 (exe)
+ dist.client.osx		build client installation for MacOS X (zip)
+ dist.client.all		build clients installation for all supported platforms
+ dist.all			build clients installation for all supported platforms and server installation for Linux
+ deploy.server		build server for current os and copy result files to arg.server.deploy (${arg.deploy.server})
+ deploy.client		build client for current os and copy result files to arg.client.deploy (${arg.deploy.client})
+ run.client runs		deployed client from arg.client.deploy (${arg.deploy.client})
+ run.server runs		deployed server from arg.server.deploy (${arg.deploy.server})
+ run.server.creator		runs GUI server creator from arg.server.deploy (${arg.deploy.server})			
+ deploy.web			build web application and copy results to arg.web.deploy (${arg.web.deploy})
+		 </echo>
+	</target>
+
+
+
+</project>

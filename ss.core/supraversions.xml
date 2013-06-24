@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<versions>
+  <asset name="mail.jar" current_version="1.5" port="3000" suprajar="false" location="/Assets/Library"/>
+  <asset name="lucene-1.3-final.jar" current_version="1.5" port="3001" suprajar="false" location="/Assets/Library"/>
+  <asset name="supra.3087_04.jar" current_version="1" port="3000" suprajar="true" location="/"/>
+  <asset name="supra.3088.jar" current_version="1.3" port="3000" suprajar="true" location="/"/>
+  <asset name="supra.3074_testing.jar" current_version="1.5" port="3091" suprajar="true" location="/">
+    <update_specific_version_only name="supra.3088.jar" version="1.3"/>
+  </asset>
+  <asset name="supra.3089_testing.jar" current_version="1.5" port="3091" suprajar="true" location="/">
+    <update_specific_version_only name="supra.3088.jar" version="1.3"/>
+  </asset>
+  <asset name="supra.3001.jar" current_version="1.5" port="3001" suprajar="true" location="/"/>
+  <asset name="rome-0.8.jar" current_version="1.5" port="3001" suprajar="false" location="/Assets/Library"/>
+  <asset name="supra.latest.3001_02.jar" current_version="1.5" port="3001" suprajar="true" location="/"/>
+</versions>

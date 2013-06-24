@@ -1,0 +1,59 @@
+.flyer{
+	position:absolute; 
+	z-index:1; 
+	border-style:solid; 
+	border-width:medium; 
+	border-color:darkblue; 
+	background-color:white; 
+	width:600px; 
+	height:300px;
+}
+
+.flyer_body{
+	position:absolute; 
+	margin:0px; 
+	z-index:1; 
+	background-color:white; 
+	width:592px; 
+	top:24px; 
+	height:272px; 
+	overflow:auto;
+}
+
+.flyer_closer{
+	position:absolute; 
+	z-index:1; 
+	background-color:darkblue; 
+	height:16px; 
+	width:16px; 
+	top:3px; 
+	left:577px;
+}
+
+.flyer_header{
+	position:absolute; 
+	width:100%; 
+	height:24px; 
+	top:0px; 
+	background-color:darkblue;
+}
+
+.leaver{
+	overflow:visible; 
+	position:absolute; 
+	height:200px; 
+	width:450px; 
+	left:2%; 
+	top:55%; 
+	background-color:gainsboro; 
+	border-style:solid; 
+	border-width:thin; 
+	border-color:darkblue; 
+	z-index:101;
+}
+
+.leaver_input{
+	margin:5px; 
+	width:95%; 
+	height:80%;
+}
