@@ -47,18 +47,18 @@
 
 	<target name="copy.xulrunner.osx">
 		<echo>
-			Installing OS X xulrunner dist, if prompted type your password to install it 
+			Installing OS X xulrunner dist, if prompted type your password to install it
 		</echo>
-        <exec executable="hdid" os="Mac OS X">
-            <arg value="${fordist.dir}/xulrunner-1.9.2.en-US.mac-pkg.dmg" />
+		<exec executable="hdid" os="Mac OS X">
+			<arg value="${fordist.dir}/xulrunner-1.9.2.en-US.mac-pkg.dmg" />
         </exec>
-              
         <exec executable="sudo" os="Mac OS X">
-             <arg value="installer" />                  
-             <arg value="-pkg" />   
-             <arg value="/Volumes/XULRunner/xulrunner-1.9.2.en-US.mac.pkg" />
-             <arg value="-target" />
-             <arg value="/" />        
+			<arg value="installer" />
+            <arg value="-verbose" />
+            <arg value="-pkg" />   
+            <arg value="/Volumes/XULRunner/xulrunner-1.9.2.en-US.mac.pkg" />
+            <arg value="-target" />
+            <arg value="/" />        
         </exec>
 
         <exec executable="hdiutil" os="Mac OS X">
