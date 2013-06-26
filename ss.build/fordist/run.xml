@@ -23,7 +23,7 @@
 	</target>
 
 	<target name="client" description="Runs supra.jar" depends="define.os.by.runtime">
-		<java jar="supra_launch.jar" fork="true" spawn="false"/>
+		<antcall target="client.creator.${os}" />
 	</target>
 
 	<target name="server" description="Runs supraserver">
@@ -37,8 +37,10 @@
 	</target>
 
 	<property name="sc.main" value="ss.server.admin.gui.SupraServerCreatorGUI" />
+	
 	<target name="server.creator.osx">
 		<java classname="${sc.main}" fork="true" spawn="false">
+		    <jvmarg value="-d32" />
 			<jvmarg value="-XstartOnFirstThread" />
 			<classpath refid="supra.jar" />
 		</java>
@@ -51,6 +53,24 @@
 	<target name="server.creator.win32">
 		<antcall target="run.sc.nojvmargs" />
 	</target>
+	
+	<target name="client.creator.osx">
+		<java jar="supra_launch.jar" fork="true" spawn="false">
+		    <jvmarg value="-d32" />
+			<jvmarg value="-XstartOnFirstThread" />
+			<classpath refid="supra.jar" />
+		</java>
+	</target>
+
+	<target name="client.creator.linux">
+		<java jar="supra_launch.jar" fork="true" spawn="false"/>
+	</target>
+
+	<target name="client.creator.win32">
+		<java jar="supra_launch.jar" fork="true" spawn="false"/>
+	</target>
+	
+	
 
 	<target name="run.sc.nojvmargs">
 		<java classname="${sc.main}" fork="true" spawn="false">
