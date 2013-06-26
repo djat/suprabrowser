@@ -27,8 +27,44 @@ when the application connects to the server, you can create another user by crea
 as long as you give the contact a username and a password, that user will be able to login. then, you should be able to run another "ant run.client" and connect in with the new user.
 
 
+
+To run the binary on your local computer, you will need mysql installed. Then, change into the "server" directory and run this command:
+
+Windows:
+java -cp supra.jar ss.server.admin.gui.SupraServerCreatorGUI
+
+Mac OSx:
+java -cp supra.jar ss.server.admin.gui.SupraServerCreatorGUI -d32 -XstartOnFirstThread
+
+
+Then, enter in your first and last name in the "Contact Name" field. If you need to enter a mysql password, do it at the bottom.
+
+Once that command completes successfully, you can run from the same directory:
+
+java -cp supra.jar ss.server.networking.SupraServer
+
+To run the client, change into the "client" directory, and run any of these:
+
+Windows:
+java -jar supra.jar
+
+Mac OSx:
+java -jar supra.jar -d32 -XstartOnFirstThread
+
+java -cp supra.jar ss.client.EntryPoint
+
+java -jar supra_launch.jar
+
+Any of those *should* work. Type in the username and password you created when running the SupraServerCreatorGUI.
+
+Once you login, you can double-click your name and start browsing and saving URL's! To create a new user, create a contact (from the drop down list),
+and as long as you give them both a username and a password, it should allow a new login into the local database.
+
+
+
 CTRL-T should open up a new tab. any time you copy and paste a URL into a sphere's text input window, it will be converted to a bookmark and indexed. To search the index, do:
 
 Command->SupraSearch
 
 please give us feedback and we would love to entertain proposals for enhancements
+
