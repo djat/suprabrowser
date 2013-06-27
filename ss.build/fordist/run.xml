@@ -55,7 +55,7 @@
 	</target>
 	
 	<target name="client.creator.osx">
-		<java jar="supra_launch.jar" fork="true" spawn="false">
+		<java classname="ss.client.EntryPoint" fork="true" spawn="false">
 		    <jvmarg value="-d32" />
 			<jvmarg value="-XstartOnFirstThread" />
 			<classpath refid="supra.jar" />
@@ -63,14 +63,16 @@
 	</target>
 
 	<target name="client.creator.linux">
-		<java jar="supra_launch.jar" fork="true" spawn="false"/>
+		<java classname="ss.client.EntryPoint" fork="true" spawn="false">
+			<classpath refid="supra.jar" />
+		</java>
 	</target>
 
 	<target name="client.creator.win32">
-		<java jar="supra_launch.jar" fork="true" spawn="false"/>
+		<java classname="ss.client.EntryPoint" fork="true" spawn="false">
+			<classpath refid="supra.jar" />
+		</java>
 	</target>
-	
-	
 
 	<target name="run.sc.nojvmargs">
 		<java classname="${sc.main}" fork="true" spawn="false">
