@@ -26,5 +26,8 @@ it should fork the client process, but if it doesn't, open up another terminal a
 when the application connects to the server, you can create another user by creating a "contact" in the drop down list in the main "SupraDevelopment" tab.
 as long as you give the contact a username and a password, that user will be able to login. then, you should be able to run another "ant run.client" and connect in with the new user.
 
+CTRL-T should open up a new tab. any time you copy and paste a URL into a sphere's text input window, it will be converted to a bookmark and indexed. To search the index, do:
 
+Command->SupraSearch
 
+please give us feedback and we would love to entertain proposals for enhancements
