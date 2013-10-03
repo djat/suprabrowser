@@ -16,7 +16,10 @@ Build instructions:
 Enter into the ss.build directory and type:
 
 ant deploy.server -Drev=3000
+
 ant deploy.client -Drev=3000
+
+followed by
 
 ant run.server.creator
 
