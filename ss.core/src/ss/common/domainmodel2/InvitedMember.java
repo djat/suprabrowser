@@ -33,7 +33,7 @@ public class InvitedMember extends DomainObject {
 	
 	private final ReferenceField<Sphere> sphere = createField(SphereDescriptor.class);
 	
-	private final XmlEntityField<UserSpherePreferences> preferences = createField( UserSpherePreferences.class, "preferences_xml" ); 
+	private final XmlEntityField<UserSpherePreferences> preferences = createFieldXmlEntityField( UserSpherePreferences.class, "preferences_xml" );  
 	
 
 	/**

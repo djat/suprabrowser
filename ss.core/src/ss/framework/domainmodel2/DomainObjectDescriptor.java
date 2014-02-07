@@ -30,7 +30,7 @@ public class DomainObjectDescriptor {
 	}
 	
 	@SuppressWarnings("unchecked")
-	public synchronized <E extends XmlEntityObject> XmlEntityFieldDescriptor<E> get(Class<E> valueClass, String name) {
+	public synchronized <E extends XmlEntityObject> XmlEntityFieldDescriptor<E> getXmlEntityFieldDescriptor(Class<E> valueClass, String name) {
 		FieldDescriptor rawDescriptor = get( name );
 		if ( rawDescriptor == null ) {
 			rawDescriptor = new XmlEntityFieldDescriptor<E>( this.domainObjectClass, name, valueClass );
@@ -47,7 +47,7 @@ public class DomainObjectDescriptor {
 	}
 
 	@SuppressWarnings("unchecked")
-	public <D extends DomainObject> ReferenceFieldDescriptor<D> get(Class<D> valueClass, String name) {
+	public <D extends DomainObject> ReferenceFieldDescriptor<D> getReferenceFieldDescriptor(Class<D> valueClass, String name) {
 		FieldDescriptor rawDescriptor = get( name );
 		if ( rawDescriptor == null ) {
 			// TODO think about this creation

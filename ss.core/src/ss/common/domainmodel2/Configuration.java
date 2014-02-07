@@ -18,7 +18,7 @@ public class Configuration extends DomainObject {
 	
 	private final StringField name = createField( NameDescriptor.class );
 	
-	private final XmlEntityField<ConfigurationValue> value = createField(ConfigurationValue.class, "value_xml" );
+	private final XmlEntityField<ConfigurationValue> value = createFieldXmlEntityField(ConfigurationValue.class, "value_xml" );
 		
 	/**
 	 * @return

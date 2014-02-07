@@ -20,7 +20,7 @@ public class Sphere extends DomainObject {
 	
 	private final StringField title = createField( StringField.class, "title" );
 
-	private final XmlEntityField<SphereOwnPreferences> preferences = createField(SphereOwnPreferences.class, "preferences_xml" );
+	private final XmlEntityField<SphereOwnPreferences> preferences = createFieldXmlEntityField(SphereOwnPreferences.class, "preferences_xml" );
 	
 	private SphereMemberCollection members = new SphereMemberCollection( this );	
 	
