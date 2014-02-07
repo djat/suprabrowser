@@ -48,23 +48,23 @@ public final class DescriptorManager {
 		}
 		return descriptor;
 	}
-
-	public synchronized <E extends XmlEntityObject> XmlEntityFieldDescriptor<E> get(
+	
+	public synchronized <E extends XmlEntityObject> XmlEntityFieldDescriptor<E> getXmlEntityFieldDescriptor(
 			Class<? extends DomainObject> domainObjectOwnerClass,
 			Class<E> valueClass, String name) {
-		return getDomainObjectDescriptor(domainObjectOwnerClass).get( valueClass, name );
+		return getDomainObjectDescriptor(domainObjectOwnerClass).getXmlEntityFieldDescriptor( valueClass, name );
 	}
 
-	public synchronized <F extends Field> FieldDescriptor<F, ?> get(
+	public synchronized <F extends Field> FieldDescriptor<F, ?> getFieldDescriptor(
 			Class<? extends DomainObject> domainObjectOwnerClass,
 			Class<F> fieldClass, String name) {
 		return getDomainObjectDescriptor(domainObjectOwnerClass).get( fieldClass, name );
 	}
 
-	public synchronized <D extends DomainObject> ReferenceFieldDescriptor<D> get(
+	public synchronized <D extends DomainObject> ReferenceFieldDescriptor<D> getReferenceFieldDescriptor(
 			Class<? extends DomainObject> domainObjectOwnerClass,
 			Class<D> valueClass, String name) {
-		return getDomainObjectDescriptor(domainObjectOwnerClass).get( valueClass, name ); 
+		return getDomainObjectDescriptor(domainObjectOwnerClass).getReferenceFieldDescriptor( valueClass, name ); 
 	}
 
 }

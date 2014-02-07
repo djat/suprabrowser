@@ -53,7 +53,7 @@ public abstract class DomainObject {
 	 * @param descriptor
 	 * @return
 	 */
-	protected final <D extends DomainObject> ReferenceField<D> createField(Class<ReferenceFieldDescriptor<D>> indexedDescriptor) {
+	protected final <D extends DomainObject> ReferenceField<D> createFieldReferenceField(Class<ReferenceFieldDescriptor<D>> indexedDescriptor) {
 		final ReferenceFieldDescriptor<D> fieldDescriptor = DescriptorManager.INSTANCE.get( indexedDescriptor );
 		return createField( fieldDescriptor );
 	}
@@ -62,8 +62,8 @@ public abstract class DomainObject {
 	 * @param name
 	 * @return
 	 */
-	protected final <E extends XmlEntityObject> XmlEntityField<E> createField(Class<E> entityClass, String name ) {
-		final XmlEntityFieldDescriptor<E> fieldDescriptor = DescriptorManager.INSTANCE.get( getClass(), entityClass, name );
+	protected final <E extends XmlEntityObject> XmlEntityField<E> createFieldXmlEntityField(Class<E> entityClass, String name ) {
+		final XmlEntityFieldDescriptor<E> fieldDescriptor = DescriptorManager.INSTANCE.getXmlEntityFieldDescriptor( getClass(), entityClass, name );
 		return createField( fieldDescriptor );
 	}
 
@@ -73,7 +73,7 @@ public abstract class DomainObject {
 	 * @return
 	 */
 	protected final <F extends Field> F createField(Class<F> fieldClass, String name) {
-		FieldDescriptor<F,?> fieldDescriptor = DescriptorManager.INSTANCE.get( getClass(), fieldClass, name );
+		FieldDescriptor<F,?> fieldDescriptor = DescriptorManager.INSTANCE.getFieldDescriptor( getClass(), fieldClass, name );
 		return createField(fieldDescriptor);
 	}
 	
@@ -82,8 +82,8 @@ public abstract class DomainObject {
 	 * @param string
 	 * @return
 	 */
-	protected final <D extends DomainObject> ReferenceField<D> createField(Class<D> targetClass, String name) {
-		ReferenceFieldDescriptor<D> fieldDescriptor = DescriptorManager.INSTANCE.get( getClass(), targetClass, name );
+	protected final <D extends DomainObject> ReferenceField<D> createFieldReferenceField(Class<D> targetClass, String name) {
+		ReferenceFieldDescriptor<D> fieldDescriptor = DescriptorManager.INSTANCE.getReferenceFieldDescriptor( getClass(), targetClass, name );
 		return createField(fieldDescriptor);
 	}
 	

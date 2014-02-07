@@ -17,13 +17,13 @@ public class Member extends DomainObject {
 		}
 	}
 	
-	private final ReferenceField<Sphere> coreSphere = createField( Sphere.class, "core_sphere_id" );
+	private final ReferenceField<Sphere> coreSphere = createFieldReferenceField( Sphere.class, "core_sphere_id" );
 	
 	private final StringField login = createField( LoginDescriptor.class );
 	
 	private final StringField firstName = createField( StringField.class, "first_name" );
 	
-	private final XmlEntityField<UserPersonalPreferences> preferences = createField(UserPersonalPreferences.class, "preferences_xml" );
+	private final XmlEntityField<UserPersonalPreferences> preferences = createFieldXmlEntityField(UserPersonalPreferences.class, "preferences_xml" );
 		
 	private MemberSphereCollection spheres = new MemberSphereCollection( this );
 	
