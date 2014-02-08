@@ -38,7 +38,7 @@
 	</target>
 
 	<target name="copy.xulrunner.linux">
-		<untar src="${fordist.dir}/xulrunner-1.9.2.en-US.linux-i686.tar.bz2" dest="${dist.files.dir}" compression="gzip">
+		<untar src="${fordist.dir}/xulrunner-1.9.2.en-US.linux-i686.tar.bz2" dest="${dist.files.dir}" compression="bzip2">
 			<patternset>
 				<include name="xulrunner/**" />
 			</patternset>
