@@ -1,0 +1,7 @@
+Manifest-Version: 1.0
+Bundle-ManifestVersion: 2
+Bundle-Name: %Bundle-Name.0
+Bundle-SymbolicName: ss.lab.dm3
+Bundle-Version: 1.0.0.qualifier
+Bundle-ClassPath: dm3.jar
+Bundle-Vendor: %Bundle-Vendor.0

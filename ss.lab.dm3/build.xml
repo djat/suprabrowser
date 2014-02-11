@@ -1,0 +1,45 @@
+<project name="Hello World" default="schemaexport" basedir=".">
+
+	<!-- Name of project and version -->
+	<property name="proj.name" value="SS Lab" />
+	<property name="proj.shortname" value="sslab" />
+	<property name="version" value="1.0" />
+
+	<!-- Global properties for this build -->
+	<property name="lib.dir" value="lib" />
+	<property name="build.dir" value="bin" />
+
+	<!-- Clean up -->
+	<target name="clean" description="Clean the build directory">
+		<delete dir="${build.dir}" />
+		<mkdir dir="${build.dir}" />
+	</target>
+
+	<target name="copy.meta.inf">
+		<copy todir="bin/META-INF">
+			<fileset dir="./META-INF"/>
+		</copy>
+	</target>
+	
+	<!-- Classpath declaration -->
+	<path id="project.classpath">
+		<fileset dir="${lib.dir}">
+			<include name="**/*.jar" />
+			<include name="**/*.zip" />
+		</fileset>
+	</path>
+
+	<!-- Hibernate Tools import -->
+	<taskdef name="hibernatetool" classname="org.hibernate.tool.ant.HibernateToolTask" classpathref="project.classpath" />
+
+	<!-- Export the database schema -->
+	<target name="schemaexport" description="Exports a generated schema to DB and file">
+		<hibernatetool destdir="${basedir}" >
+			<classpath path="${build.dir}" />
+			<annotationconfiguration configurationfile="${build.dir}/test.hibernate.cfg.xml" namingstrategy="ss.lab.dm3.persist.backend.hibernate.DataNamingStrategy"/>
+			<hbm2ddl drop="true" create="true" export="true" outputfilename="${proj.shortname}-ddl.sql" delimiter=";" format="true" />
+		</hibernatetool>
+	</target>
+
+
+</project>
