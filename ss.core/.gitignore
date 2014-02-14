@@ -1,1 +1,9 @@
 /bin
+/xulrunner
+/dyn_client.xml
+/instdesc.xml
+/last_login.xml
+/xulrunner-1.9.2.en-US.win32.zip
+/.classpath
+/.gitignore
+/target
