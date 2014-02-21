@@ -50,7 +50,7 @@ public final class TableStructureManager {
 	 * @param relativeFileName
 	 */
 	public void system_executeBatch(Class clazz, String relativeFileName) {
-		logger.warn( "Recreating tables .... by " + clazz.getPackage().getName() + " | " + relativeFileName );
+		logger.warn( "Recreating tables .... by " + clazz.getPackage().getName() + "." + clazz.getCanonicalName() + " | " + relativeFileName );
 		system_executeBatch( FileUtils.loadText( clazz, relativeFileName ) );
 		logger.warn( "Done" );
 	}

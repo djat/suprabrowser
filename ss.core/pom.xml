@@ -10,10 +10,143 @@
 	
 	<properties>
 		<client.class>ss.client.EntryPoint</client.class>
+		<server.class>ss.server.networking.SupraServer</server.class>
 	</properties>
 	
 	<build>
 		<plugins>
+			<plugin>
+		        <groupId>org.apache.maven.plugins</groupId>
+		        <artifactId>maven-install-plugin</artifactId>
+		        <version>2.5.1</version>
+		        <executions>
+		            <execution>
+		                <id>install-jar1</id>
+		                <phase>validate</phase>
+		                <goals>
+		                    <goal>install-file</goal>
+		                </goals>
+		                <configuration>
+		                	<file>lib/ss.lab.dm3.jar</file>
+		                    <packaging>jar</packaging>
+		                    <artifactId>ss.lab.dm3.local.Id</artifactId>
+		                    <groupId>local.group</groupId>
+		                    <version>1.0.0</version>
+		                    <localRepositoryPath>${basedir}/local-repo</localRepositoryPath>
+		                </configuration>
+		            </execution>
+		            <execution>
+		                <id>install-jar2</id>
+		                <phase>validate</phase>
+		                <goals>
+		                    <goal>install-file</goal>
+		                </goals>
+		                <configuration>
+		                	<file>lib-win32/ss/ss.os.utils.win32.jar</file>
+		                    <packaging>jar</packaging>
+		                    <artifactId>ss.os.utils.win32.local.Id</artifactId>
+		                    <groupId>local.group</groupId>
+		                    <version>1.0.0</version>
+		                    <localRepositoryPath>${basedir}/local-repo</localRepositoryPath>
+		                </configuration>
+		            </execution>
+		            <execution>
+		                <id>install-jar3</id>
+		                <phase>validate</phase>
+		                <goals>
+		                    <goal>install-file</goal>
+		                </goals>
+		                <configuration>
+		                	<file>lib/xulrunner/MozillaInterfaces.jar</file>
+		                    <packaging>jar</packaging>
+		                    <artifactId>MozillaInterfaces.local.Id</artifactId>
+		                    <groupId>local.group</groupId>
+		                    <version>1.0.0</version>
+		                    <localRepositoryPath>${basedir}/local-repo</localRepositoryPath>
+		                </configuration>
+		            </execution>
+		            <execution>
+		                <id>install-jar4</id>
+		                <phase>validate</phase>
+		                <goals>
+		                    <goal>install-file</goal>
+		                </goals>
+		                <configuration>
+		                	<file>lib/vcard4j-1_1_3.jar</file>
+		                    <packaging>jar</packaging>
+		                    <artifactId>vcard4j.local.Id</artifactId>
+		                    <groupId>local.group</groupId>
+		                    <version>1.0.0</version>
+		                    <localRepositoryPath>${basedir}/local-repo</localRepositoryPath>
+		                </configuration>
+		            </execution>
+		            <execution>
+		                <id>install-jar5</id>
+		                <phase>validate</phase>
+		                <goals>
+		                    <goal>install-file</goal>
+		                </goals>
+		                <configuration>
+		                	<file>lib/swtdock.jar</file>
+		                    <packaging>jar</packaging>
+		                    <artifactId>swtdock.local.Id</artifactId>
+		                    <groupId>local.group</groupId>
+		                    <version>1.0.0</version>
+		                    <localRepositoryPath>${basedir}/local-repo</localRepositoryPath>
+		                </configuration>
+		            </execution>
+		            <execution>
+		                <id>install-jar6</id>
+		                <phase>validate</phase>
+		                <goals>
+		                    <goal>install-file</goal>
+		                </goals>
+		                <configuration>
+		                	<file>lib/uif-1.4.1.jar</file>
+		                    <packaging>jar</packaging>
+		                    <artifactId>uif.local.Id</artifactId>
+		                    <groupId>local.group</groupId>
+		                    <version>1.0.0</version>
+		                    <localRepositoryPath>${basedir}/local-repo</localRepositoryPath>
+		                </configuration>
+		            </execution>
+		            <execution>
+		                <id>install-jar7</id>
+		                <phase>validate</phase>
+		                <goals>
+		                    <goal>install-file</goal>
+		                </goals>
+		                <configuration>
+		                	<file>lib/bouncy.jar</file>
+		                    <packaging>jar</packaging>
+		                    <artifactId>bouncy.local.Id</artifactId>
+		                    <groupId>local.group</groupId>
+		                    <version>1.0.0</version>
+		                    <localRepositoryPath>${basedir}/local-repo</localRepositoryPath>
+		                </configuration>
+		            </execution>
+		        </executions>
+		    </plugin>
+			<!-- <plugin>
+				<groupId>org.apache.maven.plugins</groupId>
+				<artifactId>maven-shade-plugin</artifactId>
+				<executions>
+					<execution>
+						<phase>package</phase>
+						<goals>
+							<goal>shade</goal>
+						</goals>
+					</execution>
+				</executions>
+				<configuration>
+					<finalName>uber-${artifactId}-${version}</finalName>
+					<transformers>
+		                <transformer implementation="org.apache.maven.plugins.shade.resource.ManifestResourceTransformer">
+		                  <mainClass>${client.class}</mainClass>
+		                </transformer>
+		            </transformers>
+				</configuration>
+			</plugin> -->
 			<plugin>
 		      <artifactId>maven-assembly-plugin</artifactId>
 		      <configuration>
@@ -56,8 +189,31 @@
 				<artifactId>maven-war-plugin</artifactId>
 				<version>2.4</version>
 			</plugin>
+			<plugin>
+		        <artifactId>maven-resources-plugin</artifactId>
+		        <version>2.6</version>
+		        <executions>
+		          <execution>
+		            <id>copy-resources</id>
+		            <!-- here the phase you need -->
+		            <phase>validate</phase>
+		            <goals>
+		              <goal>copy-resources</goal>
+		            </goals>
+		            <configuration>
+		              <outputDirectory>${basedir}/target/lib</outputDirectory>
+		              <resources>          
+		                <resource>
+		                  <directory>lib_additional</directory>
+		                </resource>
+		              </resources>              
+		            </configuration>            
+		          </execution>
+		        </executions>
+		     </plugin>
 		</plugins>
 	</build>
+	
 	<repositories>
 		<repository>
 			<id>Maven Snapshots</id>
@@ -79,6 +235,10 @@
 	        <name>JBoss Thirdparty Releases</name>
 	        <url>https://repository.jboss.org/nexus/content/repositories/thirdparty-releases</url>
       </repository>
+	  <repository>
+	    <id>my-local-repo</id>
+	    <url>file://${basedir}/local-repo</url>
+	  </repository>
 	</repositories>
 	<dependencies>
 		<!-- <dependency>
@@ -203,6 +363,16 @@
 		
 		<!-- ss.core dependencies -->
 		<dependency>
+			<groupId>xerces</groupId>
+			<artifactId>xercesImpl</artifactId>
+			<version>2.5.0</version>
+		</dependency>
+		<dependency>
+			<groupId>jaxen</groupId>
+			<artifactId>jaxen</artifactId>
+			<version>1.1.6</version>
+		</dependency>
+		<dependency>
 	        <groupId>org.eclipse.swt</groupId>
 	        <artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
 	        <version>4.3</version>
@@ -222,11 +392,11 @@
 			<artifactId>org.apache.servicemix.bundles.oro</artifactId>
 			<version>2.0.8_6</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 			<groupId>org.bouncycastle</groupId>
 			<artifactId>bcprov-jdk16</artifactId>
 			<version>1.46</version>
-		</dependency>
+		</dependency>-->
 		<dependency>
 			<groupId>rome</groupId>
 			<artifactId>rome</artifactId>
@@ -276,6 +446,42 @@
 	    
 	    <!-- temporary dependencies -->
 	    <dependency>
+			<groupId>local.group</groupId>
+			<artifactId>ss.lab.dm3.local.Id</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+		<dependency>
+			<groupId>local.group</groupId>
+			<artifactId>ss.os.utils.win32.local.Id</artifactId>
+			<version>1.0.0</version>
+		</dependency>
+	    <dependency>
+		  <groupId>local.group</groupId>
+		  <artifactId>MozillaInterfaces.local.Id</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>local.group</groupId>
+		  <artifactId>vcard4j.local.Id</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>local.group</groupId>
+		  <artifactId>swtdock.local.Id</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>local.group</groupId>
+		  <artifactId>uif.local.Id</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+		<dependency>
+		  <groupId>local.group</groupId>
+		  <artifactId>bouncy.local.Id</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
+		
+	    <!-- <dependency>
 			<groupId>ss.lab.dm3</groupId>
 			<artifactId>ss.lab.dm3</artifactId>
 			<version>1.0.0</version>
@@ -317,7 +523,13 @@
 		  <scope>system</scope>
 		  <systemPath>${basedir}/lib/uif-1.4.1.jar</systemPath>
 		</dependency>
-		
+		<dependency>
+		  <groupId>bouncy.local</groupId>
+		  <artifactId>bouncy.local.Id</artifactId>
+		  <version>1.0.0</version>
+		  <scope>system</scope>
+		  <systemPath>${basedir}/lib/bouncy.jar</systemPath>
+		</dependency> -->
 	</dependencies>
 	
 

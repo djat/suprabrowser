@@ -1,4 +1,4 @@
-log4j.rootLogger=WARN, stdout, logfile
+log4j.rootLogger=DEBUG, stdout, logfile
 
 # console
 log4j.appender.stdout=org.apache.log4j.ConsoleAppender

@@ -353,6 +353,9 @@ public class SphereIndex {
 	}
 
 	private void processContact(Document addDoc, org.dom4j.Document doc) {
+		// TODO: temporary
+		if ( true ) return;
+		System.out.println(doc.asXML());
 		String contact = XSLTransform.transformContact(doc);
 		if (logger.isDebugEnabled()) {
 			logger.debug("ADD CONTACT HERE: " + contact);
