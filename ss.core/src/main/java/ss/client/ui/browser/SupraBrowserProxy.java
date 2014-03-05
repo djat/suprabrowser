@@ -56,14 +56,16 @@ class SupraBrowserProxy extends Composite {
 	}
 
 	protected void createContent(int style, boolean belongsToBrowserPane) {
-		initializeBrowser( new SWTBrowser(SupraBrowserProxy.this, style, belongsToBrowserPane) );
+		//initializeBrowser( new SWTBrowser(SupraBrowserProxy.this, style, belongsToBrowserPane) );
+		//initializeBrowser( new NullBrowser(SupraBrowserProxy.this, this.mp) );
+		initializeBrowser( new LightSWTBrowser(SupraBrowserProxy.this, style) );
 		this.getCheckedBrowser().asComposite().setLayoutData(new GridData(GridData.FILL_BOTH));
 	}
 	
 	/**
 	 * @param browser2
 	 */
-	protected void initializeBrowser(SWTBrowser browser) {
+	protected void initializeBrowser(IBrowser browser) {
 		if ( browser == null ) {
 			 throw new NullPointerException( "browser" );
 		}

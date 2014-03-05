@@ -1041,8 +1041,8 @@ class SWTBrowser extends Browser implements IBrowser {
 		this.domDocument = null;
 		this.htmlDomDocument = null;
 		this.parent = null;
-		this.completedListeners.clear();
-		this.listenersToRemove.clear();
+		if (this.completedListeners!=null) this.completedListeners.clear();
+		if (this.listenersToRemove!=null) this.listenersToRemove.clear();
 		this.selection = null;
 		WebBrowserManager.INSTANCE.release( this );
 		super.dispose();

@@ -125,6 +125,21 @@
 		                    <localRepositoryPath>${basedir}/local-repo</localRepositoryPath>
 		                </configuration>
 		            </execution>
+		             <execution>
+		                <id>install-jar8</id>
+		                <phase>validate</phase>
+		                <goals>
+		                    <goal>install-file</goal>
+		                </goals>
+		                <configuration>
+		                	<file>lib/swt-4.4M5-win32-win32-x86.jar</file>
+		                    <packaging>jar</packaging>
+		                    <artifactId>swt-4.4M5.local.Id</artifactId>
+		                    <groupId>local.group</groupId>
+		                    <version>1.0.0</version>
+		                    <localRepositoryPath>${basedir}/local-repo</localRepositoryPath>
+		                </configuration>
+		            </execution>
 		        </executions>
 		    </plugin>
 			<!-- <plugin>
@@ -372,11 +387,11 @@
 			<artifactId>jaxen</artifactId>
 			<version>1.1.6</version>
 		</dependency>
-		<dependency>
+		<!-- <dependency>
 	        <groupId>org.eclipse.swt</groupId>
-	        <artifactId>org.eclipse.swt.win32.win32.x86_64</artifactId>
-	        <version>4.3</version>
-	    </dependency>
+	        <artifactId>org.eclipse.swt.win32.win32.x86</artifactId>
+	        <version>4.2.2</version>
+	    </dependency> -->
 	    <dependency>
 	      <groupId>org.mod4j.org.eclipse</groupId>
 	      <artifactId>jface</artifactId>
@@ -480,6 +495,11 @@
 		  <artifactId>bouncy.local.Id</artifactId>
 		  <version>1.0.0</version>
 		</dependency>
+		<dependency>
+		  <groupId>local.group</groupId>
+  		  <artifactId>swt-4.4M5.local.Id</artifactId>
+		  <version>1.0.0</version>
+		</dependency>
 		
 	    <!-- <dependency>
 			<groupId>ss.lab.dm3</groupId>
@@ -529,6 +549,58 @@
 		  <version>1.0.0</version>
 		  <scope>system</scope>
 		  <systemPath>${basedir}/lib/bouncy.jar</systemPath>
+		</dependency> -->
+		
+		<!-- <dependency>
+			<groupId>group.direct.local</groupId>
+			<artifactId>swt.local</artifactId>
+			<version>1.0.0</version>
+		  	<scope>system</scope>
+		  	<systemPath>${basedir}/lib-test/swt-4.4M5-win32-win32-x86.jar</systemPath>
+		</dependency> -->
+		
+		<!-- <dependency>
+		  <groupId>group.direct.local</groupId>
+		  <artifactId>org.eclipse.core.commands_3.2.0.I20060605-1400.Id</artifactId>
+		  <version>1.0.0</version>
+		  <scope>system</scope>
+		  <systemPath>${basedir}/lib/org.eclipse.core.commands_3.2.0.I20060605-1400.jar</systemPath>
+		</dependency>
+		<dependency>
+		  <groupId>group.direct.local</groupId>
+		  <artifactId>org.eclipse.core.runtime_3.2.0.v20060603.Id</artifactId>
+		  <version>1.0.0</version>
+		  <scope>system</scope>
+		  <systemPath>${basedir}/lib/org.eclipse.core.runtime_3.2.0.v20060603.jar</systemPath>
+		</dependency>
+		<dependency>
+		  <groupId>group.direct.local</groupId>
+		  <artifactId>org.eclipse.equinox.common_3.2.0.v20060603.Id</artifactId>
+		  <version>1.0.0</version>
+		  <scope>system</scope>
+		  <systemPath>${basedir}/lib/org.eclipse.equinox.common_3.2.0.v20060603.jar</systemPath>
+		</dependency>
+		
+		<dependency>
+		  <groupId>group.direct.local</groupId>
+		  <artifactId>org.eclipse.equinox.registry_3.2.1.R32x_v20060814.Id</artifactId>
+		  <version>1.0.0</version>
+		  <scope>system</scope>
+		  <systemPath>${basedir}/lib/org.eclipse.equinox.registry_3.2.1.R32x_v20060814.jar</systemPath>
+		</dependency>
+		<dependency>
+		  <groupId>group.direct.local</groupId>
+		  <artifactId>org.eclipse.jface_3.2.0.I20060605-1400.Id</artifactId>
+		  <version>1.0.0</version>
+		  <scope>system</scope>
+		  <systemPath>${basedir}/lib/org.eclipse.jface_3.2.0.I20060605-1400.jar</systemPath>
+		</dependency>
+		<dependency>
+		  <groupId>group.direct.local</groupId>
+		  <artifactId>org.eclipse.osgi_3.2.0.v20060601.Id</artifactId>
+		  <version>1.0.0</version>
+		  <scope>system</scope>
+		  <systemPath>${basedir}/lib/org.eclipse.osgi_3.2.0.v20060601.jar</systemPath>
 		</dependency> -->
 	</dependencies>
 	

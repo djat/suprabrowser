@@ -60,7 +60,9 @@ public class XulRunnerRegistrator {
 	}
 
 	public void register() throws CantRegisterXulRunnerException {
+		//NO need registering anymore
 		logger.warn("Registering!!");
+		if ( true ) return;
 		if ( !canRunXulrunnerRegister() ) {
 			throw new CantRegisterXulRunnerException( "Can't find xulrunner " + this.xulRunnerFile );
 		}
