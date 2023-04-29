@@ -15,6 +15,7 @@ import java.util.Vector;
 import java.util.concurrent.Callable;
 
 import javax.swing.JComponent;
+import javax.swing.tree.TreeNode;
 
 import org.dom4j.Document;
 import org.eclipse.jface.viewers.ISelectionChangedListener;
@@ -707,9 +708,9 @@ public class MessagesTree {
 	@SuppressWarnings("unchecked")
 	public boolean hasComment(ExternalEmailStatement email) {
 		MessagesMutableTreeNode node = getNodeById(email.getMessageId());
-		Enumeration<MessagesMutableTreeNode> nodes = node.children();
+		Enumeration<TreeNode> nodes = node.children();
 		while(nodes.hasMoreElements()) {
-			MessagesMutableTreeNode nextNode = nodes.nextElement();
+			MessagesMutableTreeNode nextNode = (MessagesMutableTreeNode) nodes.nextElement();
 			if(nextNode.getType().equals("comment")) {
 				return true;
 			}

@@ -120,7 +120,7 @@ class XMLDBCodeTrash {
 			java.sql.ResultSet rset = null;
 
 			try {
-				Statement stmt = (com.mysql.jdbc.Statement) conn
+				Statement stmt = conn
 						.createStatement();
 				stmt.getConnection();
 
@@ -168,7 +168,7 @@ class XMLDBCodeTrash {
 		java.sql.ResultSet rset = null;
 
 		try {
-			Statement stmt = (com.mysql.jdbc.Statement) conn.createStatement();
+			Statement stmt = conn.createStatement();
 			stmt.getConnection();
 
 			rset = stmt.executeQuery(statement);
@@ -277,7 +277,7 @@ class XMLDBCodeTrash {
 				+"||type='comment'||type='edit'||type='"+SupraXMLConstants.TYPE_VALUE_SYSTEM_MESSAGE+"'||type='terse'||type='reply'||type='library') ORDER BY create_ts";
 
 		try {
-			Statement stmt = (com.mysql.jdbc.Statement) conn.createStatement();
+			Statement stmt = conn.createStatement();
 			stmt.getConnection();
 
 			rset = stmt.executeQuery(statement);
@@ -326,7 +326,7 @@ class XMLDBCodeTrash {
 		java.sql.ResultSet rset = null;
 
 		try {
-			Statement stmt = (com.mysql.jdbc.Statement) conn.createStatement();
+			Statement stmt = conn.createStatement();
 			stmt.getConnection();
 
 			rset = stmt.executeQuery(statement);
@@ -389,7 +389,7 @@ class XMLDBCodeTrash {
 		java.sql.ResultSet rset = null;
 
 		try {
-			Statement stmt = (com.mysql.jdbc.Statement) conn.createStatement();
+			Statement stmt = conn.createStatement();
 			stmt.getConnection();
 
 			rset = stmt.executeQuery(statement);
@@ -449,7 +449,7 @@ class XMLDBCodeTrash {
 		java.sql.ResultSet rset = null;
 		String verifier = null;
 		try {
-			Statement stmt = (com.mysql.jdbc.Statement) conn.createStatement();
+			Statement stmt = conn.createStatement();
 			stmt.getConnection();
 
 			rset = stmt.executeQuery(statement);
@@ -517,7 +517,7 @@ class XMLDBCodeTrash {
 		java.sql.ResultSet rset = null;
 
 		try {
-			Statement stmt = (com.mysql.jdbc.Statement) conn.createStatement();
+			Statement stmt = conn.createStatement();
 			stmt.getConnection();
 
 			rset = stmt.executeQuery(statement);
@@ -700,7 +700,7 @@ class XMLDBCodeTrash {
 			java.sql.ResultSet rset = null;
 
 			try {
-				Statement stmt = (com.mysql.jdbc.Statement) conn
+				Statement stmt = conn
 						.createStatement();
 				stmt.getConnection();
 
@@ -785,8 +785,7 @@ class XMLDBCodeTrash {
 				java.sql.ResultSet rset = null;
 
 				try {
-					Statement stmt = (com.mysql.jdbc.Statement) conn
-							.createStatement();
+					Statement stmt = conn.createStatement();
 					stmt.getConnection();
 
 					rset = stmt.executeQuery(statement);
@@ -861,8 +860,7 @@ class XMLDBCodeTrash {
 		// try {
 		// conn = getConnection();
 		//
-		// Statement stmt = (com.mysql.jdbc.Statement)
-		// conn.createStatement();
+		// Statement stmt =  conn.createStatement();
 		// stmt.getConnection();
 		//
 		// rset = stmt.executeQuery(statement);
@@ -1082,7 +1080,7 @@ class XMLDBCodeTrash {
 			String statement_filter = "";
 
 			try {
-				Statement stmt = (com.mysql.jdbc.Statement) conn
+				Statement stmt = conn
 						.createStatement();
 				stmt.getConnection();
 			} catch (SQLException exc) {
@@ -1305,7 +1303,7 @@ class XMLDBCodeTrash {
 			String one_statement = null;
 
 			try {
-				Statement stmt = (com.mysql.jdbc.Statement) conn
+				Statement stmt = conn
 						.createStatement();
 
 				stmt.getConnection();
@@ -1610,7 +1608,7 @@ class XMLDBCodeTrash {
 		java.sql.ResultSet rset = null;
 
 		try {
-			Statement stmt = (com.mysql.jdbc.Statement) conn.createStatement();
+			Statement stmt = conn.createStatement();
 			stmt.getConnection();
 
 			rset = stmt.executeQuery(statement);
@@ -1665,7 +1663,7 @@ class XMLDBCodeTrash {
 			java.sql.ResultSet rset = null;
 
 			try {
-				Statement stmt = (com.mysql.jdbc.Statement) conn
+				Statement stmt = conn
 						.createStatement();
 				stmt.getConnection();
 
@@ -1797,7 +1795,7 @@ class XMLDBCodeTrash {
 class OldDBPool {
 
     
-    private static final String JDBC_DRIVER_NAME = "com.mysql.jdbc.Driver";
+    private static final String JDBC_DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 
     private static AtomicReference<OldDBPool> pool = new AtomicReference<OldDBPool>(
 	    null);

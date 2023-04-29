@@ -1,10 +1,10 @@
 package ss.rss;
 
 import java.io.IOException;
+
 import java.io.InputStream;
 import java.net.MalformedURLException;
 import java.net.URL;
-import java.security.Security;
 import java.util.List;
 import java.util.StringTokenizer;
 import java.util.Vector;
@@ -24,14 +24,6 @@ public class RSSParser {
 			.getLogger(RSSParser.class);
 
 	public RSSParser() {
-	}
-
-	@Deprecated
-	public void initSSL() {
-		System.setProperty("java.protocol.handler.pkgs",
-				"com.sun.net.ssl.internal.www.protocol");
-		Security.addProvider(new com.sun.net.ssl.internal.ssl.Provider());
-
 	}
 	
 	private static InputStream getIS(String urlString) {

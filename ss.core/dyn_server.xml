@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<dyn_server> 
+  <versions stub="stub"/>  
+  <ip_address value="127.0.0.1"/>  
+  <port value="3000"/>  
+  <mysql db_name="SupraDevelopment" db_user="root" db_pass="QweAsd!23" url="jdbc:mysql://127.0.0.1/supradevelopment?autoReconnect=true&amp;characterEncoding=Cp1252&amp;user=root&amp;password=QweAsd!23"/> 
+</dyn_server>

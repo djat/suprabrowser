@@ -95,7 +95,7 @@ import ss.server.networking.SC;
 import ss.util.ImagesPaths;
 import ss.util.NameTranslation;
 
-import com.sun.java.swing.plaf.windows.WindowsLookAndFeel;
+import javax.swing.plaf.basic.BasicLookAndFeel;
 
 public class SupraSphereFrame extends ApplicationWindow {
 
@@ -152,7 +152,7 @@ public class SupraSphereFrame extends ApplicationWindow {
 		NetworkConnectionFactory.INSTANCE.setSupraSphereFrame(this);
 		addMenuBar();
 		try {
-			UIManager.setLookAndFeel(new WindowsLookAndFeel());
+			UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
 		} catch (Exception e) {
 		}
 

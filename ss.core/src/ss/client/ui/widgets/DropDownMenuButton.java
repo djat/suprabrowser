@@ -50,8 +50,8 @@ public class DropDownMenuButton {
 
   public static void main(String[] args) {
     try {
-      UIManager.setLookAndFeel(new WindowsLookAndFeel());
-    } catch (UnsupportedLookAndFeelException e) {
+      UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+    } catch (Exception e) {
     	logger.error(e.getMessage(), e);
     }   
     

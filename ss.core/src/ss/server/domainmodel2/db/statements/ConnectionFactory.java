@@ -15,7 +15,7 @@ public class ConnectionFactory implements IConnectionFactory {
 	
 	private static boolean DRIVER_INITIALIZED = false;
 	
-	private static final String JDBC_DRIVER_NAME = "com.mysql.jdbc.Driver";
+	private static final String JDBC_DRIVER_NAME = "com.mysql.cj.jdbc.Driver";
 	
 	private final String dbUrl;
 	

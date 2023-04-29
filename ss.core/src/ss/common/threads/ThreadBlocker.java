@@ -37,9 +37,9 @@ public final class ThreadBlocker {
 	 */
 	public ThreadBlocker(long timeout ) {
 		super();
-		if ( this.timeout < 0 ) {
+		/*if ( this.timeout < 0 ) {
 			throw new IllegalArgumentException( "timeout" );
-		}
+		}*/
 		this.timeout = timeout;
 		this.startupTime = System.currentTimeMillis();
 	}

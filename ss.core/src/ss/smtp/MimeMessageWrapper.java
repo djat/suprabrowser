@@ -327,7 +327,7 @@ public class MimeMessageWrapper extends MimeMessage {
 				try {
 					bis = message.getRawInputStream();
 					bos = bodyOs;
-				} catch (javax.mail.MessagingException _) {
+				} catch (javax.mail.MessagingException e) {
 					throw udte;
 				}
 			} catch (javax.mail.MessagingException me) {
@@ -345,7 +345,7 @@ public class MimeMessageWrapper extends MimeMessage {
 				try {
 					bis = message.getRawInputStream();
 					bos = bodyOs;
-				} catch (javax.mail.MessagingException _) {
+				} catch (javax.mail.MessagingException e) {
 					throw me;
 				}
 			}
@@ -823,7 +823,7 @@ public class MimeMessageWrapper extends MimeMessage {
 		try {
 			this.headers.setHeader(RFC2822Headers.SUBJECT, new String(subject
 					.getBytes(charset)));
-		} catch (java.io.UnsupportedEncodingException _) { /* TODO */
+		} catch (java.io.UnsupportedEncodingException e) { /* TODO */
 		}
 		this.message.setSubject(subject, charset);
 	}

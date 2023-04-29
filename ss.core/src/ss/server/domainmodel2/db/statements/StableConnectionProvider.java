@@ -10,9 +10,10 @@ import java.sql.Statement;
 
 import javax.sql.PooledConnection;
 
+import com.mysql.cj.jdbc.MysqlPooledConnection;
+
 import ss.server.db.DBPool.InstantiationConnectionException;
 
-import com.mysql.jdbc.jdbc2.optional.MysqlPooledConnection;
 
 /**
  * 
@@ -49,9 +50,10 @@ public final class StableConnectionProvider implements IStableConnectionProvider
 	
 	private PooledConnection createPooledConnection()
 			throws InstantiationConnectionException {
-		Connection connection = this.connectionFactory.createConnection();
+		com.mysql.cj.jdbc.JdbcConnection connection = (com.mysql.cj.jdbc.JdbcConnection)this.connectionFactory.createConnection();
 		++ POOLED_CONNECTION_COUNTER;
-		return new MysqlPooledConnection((com.mysql.jdbc.Connection)connection);		
+		return new MysqlPooledConnection(connection);
+		//return new MysqlPooledConnection(connection);		
 	}
 
 	/*

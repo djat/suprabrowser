@@ -205,7 +205,7 @@ public class MailImpl implements Mail {
 						recipients.add(new MailAddress("<"
 								+ new InternetAddress(addresses[i].toString())
 										.toString() + ">"));
-					} catch (ParseException _) {
+					} catch (ParseException e) {
 						throw new MessagingException(
 								"Could not parse address: "
 										+ addresses[i].toString()
