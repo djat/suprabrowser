@@ -39,7 +39,7 @@ public class EntryPoint {
 	private static org.apache.log4j.Logger logger;
 
 	
-	public static void main(String[] args) {
+	public static void main(String[] args) {		
 		// Basicaly initialize as client
 		SSLogger.initialize(LoggerConfiguration.CLIENT);
 		logger = SSLogger.getLogger(EntryPoint.class);
@@ -71,7 +71,7 @@ public class EntryPoint {
 			SsDomain.addChangesListener(new SsDomainChangesListener());
 			UiUtils.setCheckUnsafeUiCalls(true);			
 			setUpSwingColors();
-			registerXulrunnerIfNeeded();
+			//registerXulrunnerIfNeeded();
 			if ( startUpArgs.hasCorrectStartUpType() ) {
 				new WelcomeScreen( startUpArgs );
 			} else if (startType.equals("server")) {

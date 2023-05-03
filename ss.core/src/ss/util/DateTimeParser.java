@@ -4,6 +4,8 @@
 package ss.util;
 
 import java.text.DateFormat;
+import java.util.TimeZone;
+
 import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Calendar;
@@ -28,6 +30,7 @@ public class DateTimeParser {
 	public Date parseToDate(String dateString) {
 		if (dateString != null && dateString.length() > 0) {
 			String pattern = "hh:mm:ss a z MMM dd, yyyy";
+			// 11:38:30 AM IST 29-Apr-2023
 			DateFormat df = new SimpleDateFormat(pattern, Locale.US);
 			try {
 				return df.parse(dateString);
@@ -42,9 +45,17 @@ public class DateTimeParser {
 						df = new SimpleDateFormat(pattern, Locale.getDefault());
 						return df.parse(dateString);						
 					} catch (ParseException ex2) {
-						logger
-								.error("Can't parse this string to either english or russian date : "
-										+ dateString);
+						try {
+							pattern = "hh:mm:ss a z dd-MMM-yyyy";
+							df = new SimpleDateFormat(pattern, Locale.ENGLISH);
+					        df.setTimeZone(TimeZone.getTimeZone("Asia/Kolkata"));
+							return df.parse(dateString);
+						} catch (ParseException ex3) {
+							ex3.printStackTrace();
+							logger
+							.error("Can't parse this string to either english or russian date : "
+									+ dateString);
+						}
 					}
 				}
 			}

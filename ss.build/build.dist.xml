@@ -44,8 +44,16 @@
 			</patternset>
 		</untar>
 	</target>
-
+	
 	<target name="copy.xulrunner.osx">
+			<untar src="${fordist.dir}/xulrunner-24.0.en-US.mac.tar.bz2" dest="${dist.files.dir}" compression="bzip2">
+				<patternset>
+					<include name="XUL.framework/Versions/Current/**" />
+				</patternset>
+			</untar>
+		</target>
+
+	<!-- target name="copy.xulrunner.osx">
 		<echo>
 			Installing OS X xulrunner dist, if prompted type your password to install it
 		</echo>
@@ -66,7 +74,7 @@
             <arg value="/Volumes/XULRunner" />                   
             <arg value="-force" />                  
         </exec>
-	</target>
+	</target -->
 
 	<target name="copy.files.client" depends="copy.common">
 		<copy todir="${dist.files.dir}">

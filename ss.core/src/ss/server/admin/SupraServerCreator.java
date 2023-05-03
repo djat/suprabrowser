@@ -77,6 +77,14 @@ public class SupraServerCreator {
 		SSLogger.initialize(LoggerConfiguration.DEFAULT);
 		logger = ss.global.SSLogger.getLogger(SupraServerCreator.class);
 		try {
+			/*SupraServerCreateStartGUIParameters params = new SupraServerCreateStartGUIParameters(
+					"Pancham Goyal",
+					"Pancham", "Pancham",
+					"127.0.0.1", 3000, 
+					"Pancham",
+					"Pancham", "root", "QweAsd!23"
+					);
+			*/
 			new SupraServerCreator().createDatabase(args, false, null);
 		} catch (Throwable ex) {
 			logger.fatal("SupraServerCreator failed. Args "

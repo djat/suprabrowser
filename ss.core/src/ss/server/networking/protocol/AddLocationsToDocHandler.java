@@ -46,6 +46,7 @@ public class AddLocationsToDocHandler implements ProtocolHandler {
 				newSphereName);
 
 		this.peer.replaceAndUpdateAllLocations(session, sendDoc);
+		
 		// Document newDoc = (Document)document.clone();
 		// newDoc.getRootElement().element("message_id").addAttribute("value",newMessageId);
 		// // Doing this so it will be consistent with

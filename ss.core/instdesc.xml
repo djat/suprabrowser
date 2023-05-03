@@ -1,0 +1,86 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<installation_description>
+  <entry name="application-folder">
+    <entry name="lib-linux">
+      <entry name="os">
+        <entry name="ss.os.utils.linux.jar" type="file" hash="e9af620e6d8f5de533ad04fb0ebed684" size="4726"/>
+      </entry>
+      <entry name="swt">
+        <entry name="swt.jar" type="file" hash="3f5abcc5769c413fc731585b36fe61c2" size="1245295"/>
+      </entry>
+    </entry>
+    <entry name="lib-win32">
+      <entry name="ss">
+        <entry name="ss.os.utils.win32.jar" type="file" hash="461f752950e7d6b7ef40f61263e84b72" size="4258"/>
+      </entry>
+      <entry name="swt">
+        <entry name="swt-debug.jar" type="file" hash="4069eebd6835516f082475defee5f084" size="2685764"/>
+        <entry name="swt.jar" type="file" hash="8c458f07f63aa3b2eb9685e25142cfde" size="2518014"/>
+      </entry>
+    </entry>
+    <entry name="lib">
+      <entry name="FontBox-0.1.0.jar" type="file" hash="2481ae281c636a2d5309b388bebbea2a" size="63167"/>
+      <entry name="PDFBox-0.7.3.jar" type="file" hash="2cc182d4b987467b0853c971b5a8010e" size="3321771"/>
+      <entry name="activation.jar" type="file" hash="5ff36dc2285e21d8628e92fdcc63f6a4" size="54665"/>
+      <entry name="ant-launcher.jar" type="file" hash="8be748f7c16196b7e65d69ce87e60a99" size="8412"/>
+      <entry name="ant.jar" type="file" hash="e5b8225d63e12597811ddaf1e58263f6" size="958858"/>
+      <entry name="bouncy.jar" type="file" hash="86add778fbbd2ef13a2e52c7587f5234" size="874255"/>
+      <entry name="commons-collections-2.1.1.jar" type="file" hash="9b47ae4871f91707617dda4ef1509b2c" size="175426"/>
+      <entry name="commons-fileupload-1.2.jar" type="file" hash="c9021a6ed3d7d399ca96a7d9d9c84bb1" size="53082"/>
+      <entry name="commons-lang-2.3.jar" type="file" hash="dcdcbb47176603907c9f79a1349193eb" size="245274"/>
+      <entry name="commons-logging-1.0.4.jar" type="file" hash="8a507817b28077e0478add944c64586a" size="38015"/>
+      <entry name="dom4j.jar" type="file" hash="4d8f51d3fe3900efc6e395be48030d6d" size="313898"/>
+      <entry name="id3.jar" type="file" hash="601ab0b8379e782ab21d4ecdb9664230" size="140949"/>
+      <entry name="images2.jar" type="file" hash="27b9ca76851d2a0fab7cc07a6c7102b7" size="576593"/>
+      <entry name="jakarta-oro-2.0.5.jar" type="file" hash="507af3b990c4a0611a138c347511db4b" size="84362"/>
+      <entry name="james.jar" type="file" hash="76d5f062a9392d549f0cf48841a80eda" size="372593"/>
+      <entry name="jaxen-1.2.0.jar" type="file" hash="c32cf69356254b8f5050fce6e86358e9" size="232455"/>
+      <entry name="jdom.jar" type="file" hash="0b8f97de82fc9529b1028a77125ce4f8" size="153253"/>
+      <entry name="jfaceminimal.jar" type="file" hash="56500801ce9e098c0845977a3993f79c" size="29835"/>
+      <entry name="jl1.0.jar" type="file" hash="beb5af7c8e02649ca6d22514d9ecab52" size="105446"/>
+      <entry name="jpim.jar" type="file" hash="ac48528b54bb805a2d2b55c45d38d894" size="241775"/>
+      <entry name="jrex.jar" type="file" hash="6ab0220822619334ffc0e44b0f1d6d7e" size="33181"/>
+      <entry name="juh.jar" type="file" hash="4da1014347e9df2f2dd8ee0bc207cdf5" size="54396"/>
+      <entry name="junit-4.1.jar" type="file" hash="3aa45be8fd3f5ae8c69b73959a7fa57c" size="112249"/>
+      <entry name="jurt.jar" type="file" hash="33f87e71ddb97e321ef04c204ad0b8cd" size="109971"/>
+      <entry name="log4j-1.2.14.jar" type="file" hash="599b8ba07d1d04f0ea34414e861d7ad1" size="367444"/>
+      <entry name="looks-1.3.2.jar" type="file" hash="b9374d0983ef83a39e2f0d861b62411b" size="335913"/>
+      <entry name="lucene-core-2.0.0.jar" type="file" hash="fdfedd65f24353529d084dba73e2e9c2" size="403597"/>
+      <entry name="lucene-highlighter-2.0.0.jar" type="file" hash="1cffe13ecb2e3745a826ad2f23f9a160" size="23370"/>
+      <entry name="mail.jar" type="file" hash="7113ec7505c29cc55e527c3da6ffd654" size="371264"/>
+      <entry name="microblog.jar" type="file" hash="79dc67379dd3723bc5854fd9f26679d1" size="42385"/>
+      <entry name="mysql.jar" type="file" hash="801b67e18f23e4e9ec392812a1c108d4" size="2481560"/>
+      <entry name="nanoxml-lite-2.2.3.jar" type="file" hash="1e5079b23eaf16f518b6f8f88691af32" size="5914"/>
+      <entry name="optional.jar" type="file" hash="8f3144cfbda4afe018e468f254806431" size="424794"/>
+      <entry name="org.eclipse.core.commands_3.2.0.I20060605-1400.jar" type="file" hash="bd1ab5ea58024180b8e58d0a36e0cba2" size="89522"/>
+      <entry name="org.eclipse.core.runtime_3.2.0.v20060603.jar" type="file" hash="299e673e403932b039759b9b3d9375ce" size="76627"/>
+      <entry name="org.eclipse.equinox.common_3.2.0.v20060603.jar" type="file" hash="877570665f1ae6426255e437d7c98060" size="79780"/>
+      <entry name="org.eclipse.equinox.registry_3.2.1.R32x_v20060814.jar" type="file" hash="42ca549ab5b74b8719a88f82eb874311" size="147179"/>
+      <entry name="org.eclipse.jface_3.2.0.I20060605-1400.jar" type="file" hash="ae96fe90575124a5b768c19e5eb5a874" size="813596"/>
+      <entry name="org.eclipse.osgi_3.2.0.v20060601.jar" type="file" hash="eb0e5c2b996498fbc867a50e64631e29" size="846716"/>
+      <entry name="resolver.jar" type="file" hash="39546d6a7f9cf0fd971874d43214dbe4" size="60047"/>
+      <entry name="ridl.jar" type="file" hash="46176c4f847a4f700e06c72cbc457ed2" size="244635"/>
+      <entry name="rome-0.9.jar" type="file" hash="19589699b01c59ccb4d5e61e4c78b311" size="208025"/>
+      <entry name="sandbox.jar" type="file" hash="65637da845bfc3d62f7f07840a115802" size="42168"/>
+      <entry name="serializer.jar" type="file" hash="20d5ad0aaa88d10f8d3cb110e94d8128" size="188893"/>
+      <entry name="skeleton-pro-1.7.0.jar" type="file" hash="44c9e07f4b5c2340b04d24d62f530ab0" size="1269744"/>
+      <entry name="ss.lab.dm3.jar" type="file" hash="aa1f47a3344ccc52982fd912846b1bf6" size="439982"/>
+      <entry name="swtcalendar.jar" type="file" hash="f1b45060e87169b68ae197450cb80b73" size="16779"/>
+      <entry name="swtdock.jar" type="file" hash="1563398256f108843dae2b8cbafb76d2" size="71649"/>
+      <entry name="tinymce.jar" type="file" hash="9ce71d6457fb0e255459a80ef131292a" size="647615"/>
+      <entry name="tools.jar" type="file" hash="f98fdb921d68282cd2e3eebb12e2c86c" size="7025359"/>
+      <entry name="uif-1.4.1.jar" type="file" hash="1e06935b6cab4feb726cc8ea5b8c2d01" size="129128"/>
+      <entry name="uif-extras-1.4.1.jar" type="file" hash="c7ff66e5d4fe7194d800d1ab92b9754a" size="160181"/>
+      <entry name="unoil.jar" type="file" hash="d5d8f22df2f4bcf4274f08a09ac981dc" size="1054218"/>
+      <entry name="vcard4j-1_1_3.jar" type="file" hash="2b7fdb4485f212e23b6c37917d2e0f5a" size="117950"/>
+      <entry name="xalan.jar" type="file" hash="a90e2d660b2ad01f755116981c2145b0" size="3078593"/>
+      <entry name="xercesImpl.jar" type="file" hash="3b900fe7a218f30379abd129c3ea0cb3" size="1203860"/>
+      <entry name="xulrunner">
+        <entry name="MozillaInterfaces-src.jar" type="file" hash="bf23e51d77286b02c8c5039aa6965569" size="1016338"/>
+        <entry name="MozillaInterfaces.jar" type="file" hash="73d1642fa65ffb671c3ca5e055531e74" size="712501"/>
+      </entry>
+    </entry>
+  </entry>
+  <application_version value="Mac OS X-0"/>
+</installation_description>

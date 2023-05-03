@@ -744,6 +744,7 @@ final class ServerThread extends Thread {
 				
 				String contactLocked = (String) loginInfo.get("contact_locked");
 
+				
 				logger.warn("Change passphrase next login..."
 						+ changePassphraseNextLogin);
 
@@ -753,7 +754,7 @@ final class ServerThread extends Thread {
 							+ ": ....must have changed: " + changePw);
 					changePassphraseNextLogin = "false";
 				}
-
+				
 				if (logger.isDebugEnabled()) {
 					logger.info("SALT STRING: " + saltString);
 					logger.info("Verifier: " + verifier);
